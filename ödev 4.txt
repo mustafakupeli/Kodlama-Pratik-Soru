@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <string.h>
+
+void FindWordsStartingWith(const char* text, const char* prefix) {
+    char* token;
+    char copy[1000];
+    
+    strcpy(copy, text);
+    
+    token = strtok(copy, " .,;!?");
+    
+    printf("Metindeki %s ile baslayan kelimeler: ", prefix);
+    
+    while (token != NULL) {
+        if (strncmp(token, prefix, strlen(prefix)) == 0) {
+            printf("%s ", token);
+        }
+        
+        token = strtok(NULL, " .,;!?");
+    }
+    
+    printf("\n");
+}
+
+int main() {
+    const char* text = "Bu bir metin ornegidir. Bu metinde bazı kelimeler bulunmaktadir. Bu kelimeleri bulmaya calisalim.";
+    const char* prefix = "Bu";
+    
+    FindWordsStartingWith(text, prefix);
+    
+    return 0;
+}
